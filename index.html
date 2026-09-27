@@ -25,7 +25,16 @@
   }
 </script>
 <style>
-  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; scroll-behavior:auto !important; } }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; scroll-behavior:auto !important; animation:none !important; } }
+
+  @keyframes floatChip {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .chip-float { animation: floatChip 4.5s ease-in-out infinite; }
+  .chip-float-slow { animation: floatChip 5.5s ease-in-out infinite; animation-delay: .6s; }
+
+  #heroStack .stack-card { transition: transform .35s cubic-bezier(.22,1,.36,1); will-change: transform; }
 </style>
 </head>
 <body class="bg-white text-ink font-sans antialiased pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]">
@@ -66,21 +75,63 @@
 <main id="top">
 
   <!-- HERO -->
-  <section class="min-h-[calc(100vh-73px)] min-h-[calc(100dvh-73px)] flex items-center px-6 py-10">
-    <div class="max-w-[680px] mx-auto flex flex-col items-center text-center">
-      <div class="inline-flex items-center gap-2.5 text-muted text-sm mb-4">
-        <span class="w-7 h-0.5 bg-brand"></span>Marketplace produk digital
+  <section class="min-h-[calc(100vh-73px)] min-h-[calc(100dvh-73px)] flex items-center px-6 py-12 md:py-10 overflow-hidden">
+    <div class="max-w-[1120px] mx-auto w-full grid md:grid-cols-2 gap-12 md:gap-10 items-center">
+
+      <div class="flex flex-col items-center md:items-start text-center md:text-left">
+        <div class="inline-flex items-center gap-2.5 text-muted text-sm mb-4">
+          <span class="w-7 h-0.5 bg-brand"></span>Marketplace produk digital
+        </div>
+        <h1 class="text-4xl md:text-[3.4rem] font-semibold leading-[1.12] tracking-tight max-w-[19ch] mb-4 md:mb-5">
+          Aset digital pilihan, siap pakai kapan saja
+        </h1>
+        <p class="text-muted text-base md:text-lg leading-relaxed max-w-[44ch] mb-7 md:mb-8">
+          Template, e-book, lisensi software, dan aset desain—dikurasi manual, dikirim otomatis ke email begitu pembayaran selesai.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center md:items-start gap-3.5 w-full max-w-[340px] sm:max-w-none">
+          <a href="#layanan" class="w-full sm:w-auto text-center bg-brand text-white px-7 py-3.5 rounded-xl font-medium hover:bg-brand-dark hover:-translate-y-0.5 transition">Jelajahi Produk</a>
+          <a href="#tentang" class="w-full sm:w-auto text-center border border-line text-ink px-7 py-3.5 rounded-xl font-medium hover:border-brand hover:text-brand hover:-translate-y-0.5 transition">Tentang ZeyPedia</a>
+        </div>
+
+        <div class="flex items-center gap-5 sm:gap-7 mt-9 md:mt-11 pt-6 border-t border-line w-full max-w-[420px]">
+          <div>
+            <div class="text-xl md:text-2xl font-semibold">138+</div>
+            <div class="text-xs text-muted">Produk digital</div>
+          </div>
+          <div class="w-px h-8 bg-line shrink-0"></div>
+          <div>
+            <div class="text-xl md:text-2xl font-semibold">4.9/5</div>
+            <div class="text-xs text-muted">Rating pembeli</div>
+          </div>
+          <div class="w-px h-8 bg-line shrink-0"></div>
+          <div>
+            <div class="text-xl md:text-2xl font-semibold">&lt;1 menit</div>
+            <div class="text-xs text-muted">Waktu kirim</div>
+          </div>
+        </div>
       </div>
-      <h1 class="text-4xl md:text-6xl font-semibold leading-[1.12] tracking-tight max-w-[19ch] mb-4 md:mb-5">
-        Aset digital pilihan, siap pakai kapan saja
-      </h1>
-      <p class="text-muted text-base md:text-lg leading-relaxed max-w-[44ch] mb-7 md:mb-8">
-        Template, e-book, lisensi software, dan aset desain—dikurasi manual, dikirim otomatis ke email begitu pembayaran selesai.
-      </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-[340px] sm:max-w-none">
-        <a href="#layanan" class="w-full sm:w-auto text-center bg-brand text-white px-7 py-3.5 rounded-xl font-medium hover:bg-brand-dark hover:-translate-y-0.5 transition">Jelajahi Produk</a>
-        <a href="#tentang" class="w-full sm:w-auto text-center border border-line text-ink px-7 py-3.5 rounded-xl font-medium hover:border-brand hover:text-brand hover:-translate-y-0.5 transition">Tentang ZeyPedia</a>
+
+      <div id="heroStack" class="relative h-[300px] sm:h-[360px] md:h-[420px] max-w-[380px] mx-auto w-full [perspective:1200px]">
+        <div class="absolute inset-8 bg-brand/10 rounded-[32px] blur-2xl"></div>
+
+        <div class="stack-card absolute left-[10%] top-[6%] w-[64%] aspect-[4/5] rounded-2xl overflow-hidden border border-line shadow-xl bg-white rotate-[-8deg]">
+          <img src="https://picsum.photos/seed/zeypedia-template/500/620" alt="Pratinjau template desain" class="w-full h-full object-cover" loading="lazy">
+        </div>
+        <div class="stack-card absolute right-[6%] top-[16%] w-[58%] aspect-[4/5] rounded-2xl overflow-hidden border border-line shadow-xl bg-white rotate-[7deg]">
+          <img src="https://picsum.photos/seed/zeypedia-ebook/460/580" alt="Pratinjau e-book" class="w-full h-full object-cover" loading="lazy">
+        </div>
+        <div class="stack-card absolute left-[22%] bottom-[2%] w-[54%] aspect-[4/5] rounded-2xl overflow-hidden border border-line shadow-xl bg-white rotate-[3deg]">
+          <img src="https://picsum.photos/seed/zeypedia-uiux/440/560" alt="Pratinjau aset UI/UX" class="w-full h-full object-cover" loading="lazy">
+        </div>
+
+        <div class="chip-float absolute -left-2 sm:left-0 bottom-[14%] bg-white border border-line rounded-xl shadow-lg px-3.5 py-2.5 flex items-center gap-2 text-xs font-medium">
+          <span class="text-brand">⭐ 4.9</span><span class="text-muted font-normal">dari 2.400+ ulasan</span>
+        </div>
+        <div class="chip-float-slow absolute -right-2 sm:right-0 top-[6%] bg-white border border-line rounded-xl shadow-lg px-3.5 py-2.5 flex items-center gap-2 text-xs font-medium">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>File terkirim otomatis
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -189,11 +240,7 @@
 
       <div class="bg-white border border-line rounded-2xl p-2.5 flex flex-col gap-2 hover:border-brand hover:-translate-y-1 transition">
         <div class="aspect-[4/3] rounded-xl overflow-hidden bg-lavender">
-          <svg viewBox="0 0 160 120" class="w-full h-full block" xmlns="http://www.w3.org/2000/svg">
-            <rect width="160" height="120" fill="#f2f0ff"/>
-            <rect x="28" y="26" width="70" height="46" rx="4" fill="#4a3af5" opacity="0.9"/>
-            <rect x="52" y="52" width="70" height="46" rx="4" fill="#4a3af5" opacity="0.35"/>
-          </svg>
+          <img src="https://picsum.photos/seed/starter-kit-branding/320/240" alt="Starter Kit Branding" class="w-full h-full object-cover" loading="lazy">
         </div>
         <div class="px-1 pt-1.5 pb-0.5 flex flex-col gap-1.5">
           <span class="text-[11px] text-brand font-medium">Template Desain</span>
@@ -207,13 +254,7 @@
 
       <div class="bg-white border border-line rounded-2xl p-2.5 flex flex-col gap-2 hover:border-brand hover:-translate-y-1 transition">
         <div class="aspect-[4/3] rounded-xl overflow-hidden bg-lavender">
-          <svg viewBox="0 0 160 120" class="w-full h-full block" xmlns="http://www.w3.org/2000/svg">
-            <rect width="160" height="120" fill="#f2f0ff"/>
-            <rect x="46" y="24" width="52" height="72" rx="5" fill="#4a3af5" opacity="0.9"/>
-            <rect x="58" y="38" width="28" height="4" rx="2" fill="#f2f0ff"/>
-            <rect x="58" y="50" width="28" height="4" rx="2" fill="#f2f0ff"/>
-            <rect x="58" y="62" width="18" height="4" rx="2" fill="#f2f0ff"/>
-          </svg>
+          <img src="https://picsum.photos/seed/ux-copy-guide/320/240" alt="Panduan Menulis UX Copy" class="w-full h-full object-cover" loading="lazy">
         </div>
         <div class="px-1 pt-1.5 pb-0.5 flex flex-col gap-1.5">
           <span class="text-[11px] text-brand font-medium">E-book</span>
@@ -227,11 +268,7 @@
 
       <div class="col-span-2 md:col-span-1 bg-white border border-line rounded-2xl p-2.5 flex flex-col gap-2 hover:border-brand hover:-translate-y-1 transition">
         <div class="aspect-[4/3] rounded-xl overflow-hidden bg-lavender">
-          <svg viewBox="0 0 160 120" class="w-full h-full block" xmlns="http://www.w3.org/2000/svg">
-            <rect width="160" height="120" fill="#f2f0ff"/>
-            <circle cx="80" cy="60" r="30" fill="#4a3af5" opacity="0.9"/>
-            <circle cx="94" cy="50" r="30" fill="none" stroke="#4a3af5" stroke-width="2" opacity="0.35"/>
-          </svg>
+          <img src="https://picsum.photos/seed/font-studio-pro/320/240" alt="Font Studio Pro" class="w-full h-full object-cover" loading="lazy">
         </div>
         <div class="px-1 pt-1.5 pb-0.5 flex flex-col gap-1.5">
           <span class="text-[11px] text-brand font-medium">Lisensi Software</span>
@@ -358,6 +395,26 @@
     setMenu(navLinks.classList.contains('max-h-0'));
   });
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // Hero product stack: tilts toward the cursor, resets on mouse leave / touch.
+  const heroStack = document.getElementById('heroStack');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (heroStack && !prefersReducedMotion && window.matchMedia('(hover: hover)').matches) {
+    const cards = heroStack.querySelectorAll('.stack-card');
+    const baseRotate = [-8, 7, 3];
+    heroStack.addEventListener('mousemove', (e) => {
+      const rect = heroStack.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width - 0.5;
+      const py = (e.clientY - rect.top) / rect.height - 0.5;
+      cards.forEach((card, i) => {
+        const depth = (i + 1) * 6;
+        card.style.transform = `rotate(${baseRotate[i]}deg) translate(${px * depth}px, ${py * depth}px)`;
+      });
+    });
+    heroStack.addEventListener('mouseleave', () => {
+      cards.forEach((card, i) => { card.style.transform = `rotate(${baseRotate[i]}deg)`; });
+    });
+  }
 </script>
 
 </body>
